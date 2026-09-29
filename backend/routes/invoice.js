@@ -159,19 +159,23 @@ router.post(
 
       // Seller's Details
       doc.setFontSize(10);
-      doc.text(firmName, 15, (line += 5));
+      doc.text(firmName || "", 15, (line += 5));
       doc.setFont("times", "normal");
-      doc.text(firmAddress, 15, (line += 5));
-      doc.text("Pincode : " + firmPincode.toString(), 15, (line += 5));
-      doc.text(firmGstIn, 15, (line += 5));
+      doc.text(firmAddress || "", 15, (line += 5));
+      if (firmPincode) {
+        doc.text("Pincode : " + firmPincode.toString(), 15, (line += 5));
+      }
+      doc.text(firmGstIn || "", 15, (line += 5));
 
       // Buyer's Details
       doc.setFont("times", "bold");
-      doc.text(buyerName, 15, (line += 10));
+      doc.text(buyerName || "", 15, (line += 10));
       doc.setFont("times", "normal");
-      doc.text(buyerAddress, 15, (line += 5));
-      doc.text("Pincode : " + buyerPincode.toString(), 15, (line += 5));
-      doc.text(buyerGstIn, 15, (line += 5));
+      doc.text(buyerAddress || "", 15, (line += 5));
+      if (buyerPincode) {
+        doc.text("Pincode : " + buyerPincode.toString(), 15, (line += 5));
+      }
+      doc.text(buyerGstIn || "", 15, (line += 5));
 
       // Date and Invoice number
       doc.text(
@@ -397,19 +401,23 @@ router.post(
 
       // Seller's Information
       doc.setFontSize(10);
-      doc.text(firmName, 15, (line += 5));
+      doc.text(firmName || "", 15, (line += 5));
       doc.setFont("times", "normal");
-      doc.text(firmAddress, 15, (line += 5));
-      doc.text("Pincode : " + firmPincode.toString(), 15, (line += 5));
-      doc.text(firmGstIn, 15, (line += 5));
+      doc.text(firmAddress || "", 15, (line += 5));
+      if (firmPincode) {
+        doc.text("Pincode : " + firmPincode.toString(), 15, (line += 5));
+      }
+      doc.text(firmGstIn || "", 15, (line += 5));
 
       // Buyer's Information
       doc.setFont("times", "bold");
-      doc.text(buyerName, 15, (line += 10));
+      doc.text(buyerName || "", 15, (line += 10));
       doc.setFont("times", "normal");
-      doc.text(buyerAddress, 15, (line += 5));
-      doc.text("Pincode : " + buyerPincode.toString(), 15, (line += 5));
-      doc.text(buyerGstIn, 15, (line += 5));
+      doc.text(buyerAddress || "", 15, (line += 5));
+      if (buyerPincode) {
+        doc.text("Pincode : " + buyerPincode.toString(), 15, (line += 5));
+      }
+      doc.text(buyerGstIn || "", 15, (line += 5));
 
       // Date and Invoice number
       doc.text(

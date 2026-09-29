@@ -12,6 +12,7 @@ const Profile = () => {
   const [phone, setPhone] = useState();
   const [gstin, setGstin] = useState("");
   const [address, setAddress] = useState("");
+  const [pincode, setPincode] = useState("");
   const [error, setError] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -25,11 +26,25 @@ const Profile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = axios.put(
+      const res = await axios.put(
         myURL + "/api/v1/me/update",
-        { name, email, company, address, gstin, phone },
+        { name, email, company, address, pincode, gstin, phone },
         { withCredentials: true }
       );
+      const localUser = JSON.parse(localStorage.getItem("user"));
+      if (localUser && localUser.user) {
+        localUser.user = {
+          ...localUser.user,
+          name,
+          email,
+          company,
+          address,
+          pincode,
+          gstin,
+          phone,
+        };
+        localStorage.setItem("user", JSON.stringify(localUser));
+      }
       alert("User details updated");
       window.location.reload();
     } catch (error) {
@@ -43,11 +58,11 @@ const Profile = () => {
       const res = await axios.get(myURL + "/api/v1/me", {
         withCredentials: true,
       });
-      //address, contact, pincode, gstin
       console.log(res?.data);
       setName(res?.data.user.name);
       setEmail(res?.data.user.email);
       setAddress(res?.data.user.address);
+      setPincode(res?.data.user.pincode || "");
       setCompany(res?.data.user.company);
       setPhone(res?.data.user.phone);
       setGstin(res.data.user.gstin);
@@ -153,6 +168,16 @@ const Profile = () => {
               className="my-2 w-full rounded-md px-4  py-2 border-2 focus:border-green-600 dark:focus:border-white dark:bg-gray-800 dark:placeholder:text-gray-500 outline-0"
               onChange={(e) => {
                 setAddress(e.target.value);
+              }}
+            ></input>
+            <label htmlFor="pincode" className="mt-2 font-bold">
+              Pincode:
+            </label>
+            <input
+              value={pincode}
+              className="my-2 w-full rounded-md px-4  py-2 border-2 focus:border-green-600 dark:focus:border-white dark:bg-gray-800 dark:placeholder:text-gray-500 outline-0"
+              onChange={(e) => {
+                setPincode(e.target.value);
               }}
             ></input>
             <label htmlFor="gstin" className="mt-2 font-bold">

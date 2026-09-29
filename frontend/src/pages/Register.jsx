@@ -11,6 +11,7 @@ const Register = () => {
   const [phone, setPhone] = useState();
   const [gstin, setGstin] = useState("");
   const [address, setAddress] = useState("");
+  const [pincode, setPincode] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const Register = () => {
         phone,
         gstin,
         address,
+        pincode,
         email,
         password,
       });
@@ -114,6 +116,16 @@ const Register = () => {
                 placeholder="Address"
                 onChange={(e) => setAddress(e.target.value)}
                 required
+              />
+            </div>
+            <div>
+              <input
+                className="my-2 w-full rounded-md px-4  py-2 border-2 focus:border-green-600 dark:focus:border-white dark:bg-gray-800 dark:placeholder:text-gray-500 outline-0"
+                type="text"
+                name="pincode"
+                id="pincode"
+                placeholder="Pincode"
+                onChange={(e) => setPincode(e.target.value)}
               />
             </div>
             <div>

@@ -9,7 +9,7 @@ const Invoice = require("../models/Invoice");
 
 // Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const { name, company, address, gstin, phone, email, password } = req.body;
+  const { name, company, address, pincode, gstin, phone, email, password } = req.body;
 
   if (
     !name ||
@@ -57,6 +57,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     name,
     company,
     address,
+    pincode: pincode || "",
     gstin,
     phone,
     email,
@@ -244,6 +245,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     company: req.body.company,
     phone: req.body.phone,
     address: req.body.address,
+    pincode: req.body.pincode,
     gstin: req.body.gstin,
   };
   const checkEmail = newUserData.email;
@@ -261,6 +263,7 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    user,
   });
 });
 

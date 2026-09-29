@@ -81,11 +81,11 @@ const EditInvoice = () => {
       console.log(info);
       setInfo({
         id: id.id,
-        firmName: user.company,
-        firmAddress: user.address,
-        firmPincode: "221002",
-        firmContact: user.phone,
-        firmGstIn: user.gstin,
+        firmName: user?.company || "",
+        firmAddress: user?.address || "",
+        firmPincode: user?.pincode ? user.pincode.toString() : "",
+        firmContact: user?.phone || "",
+        firmGstIn: user?.gstin || "",
         invoiceNumber: invoice.invoiceNumber,
         date: invoice.date,
         buyerName: invoice.buyerName,

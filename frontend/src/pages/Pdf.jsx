@@ -22,11 +22,11 @@ const Pdf = () => {
   const [info, setInfo] = useState({
     //name->firm name
     id: user.user._id,
-    firmName: user.user.company,
-    firmAddress: user.user.address,
-    firmPincode: "221002",
-    firmContact: user.user.phone,
-    firmGstIn: user.user.gstin,
+    firmName: user?.user?.company || "",
+    firmAddress: user?.user?.address || "",
+    firmPincode: user?.user?.pincode ? user.user.pincode.toString() : "",
+    firmContact: user?.user?.phone || "",
+    firmGstIn: user?.user?.gstin || "",
     invoiceNumber: invoiceNumber,
     date: today,
     buyerName: "",
